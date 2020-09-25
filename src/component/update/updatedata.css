@@ -1,0 +1,9 @@
+.modal-dialog {
+    max-width: 60% !important;
+}
+.inputfrom input[type="text"] {
+    width: 32%;
+    float: left;
+    margin-right: 10px;
+    padding: 5px 10px;
+}
