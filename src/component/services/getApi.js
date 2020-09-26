@@ -2,7 +2,7 @@ import http from "./httpService";
 
 
 function insertAllPosts() {
-    return http.get('/posts/', { userId, title, body});
+    return http.post('/posts/', { title, body});
 };
 
 
