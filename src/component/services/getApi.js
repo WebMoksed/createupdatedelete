@@ -1,9 +1,9 @@
 import http from "./httpService";
 
 
-function insertAllPosts() {
-    return http.post('/posts/', { title, body});
+function insertAllPosts(data) {
+    return http.post('/posts/', data);
 };
 
 
-export default { insertAllPosts}
+export default { insertAllPosts }

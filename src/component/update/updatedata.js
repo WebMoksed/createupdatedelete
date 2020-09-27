@@ -4,16 +4,23 @@ import '../update/updatedata.css';
 // import Axios from 'axios'
 // import {GetApi} from '../services/getApi'
 import GetApi from '../services/getApi';
-export default function UpdateData() {
+
+
+
+export default function UpdateData(props) {
+    const { handleShow, show, handleClose, onChange, submit } = props;
     const [insertpost, setInsertpost] = useState([]);
-    const [show, setShow] = useState(false);
-    const [data, setData]=useState({
-        title:"",
-        body:"",
+    // const [show, setShow] = useState(true);
+
+    const [post, setPost] = useState({
+        title: "",
+        body: "",
+        userId: ""
     });
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+
+    // const handleClose = () => setShow(false);
+    // const handleShow = () => setShow(true);
     // useEffect(()=>{
     //     (async function(){
     //         const {data} = await GetApi.insertAllPosts();
@@ -22,39 +29,47 @@ export default function UpdateData() {
     //     })()
     // }, [])
 
-// const url ="https://jsonplaceholder.typicode.com/posts";
+    // const url ="https://jsonplaceholder.typicode.com/posts";
 
-   async function submit(e){
-        e.preventDefault();
-        // Axios.post(url, data)
-        // .then((res)=>{
-        //     console.log(res.data)
-        // })
-        // const { data } = await GetApi(data.title, data.body);
-        // console.log(data)
-    }
-    function handle(e){
-        const newdata =[]
-        newdata[e.target.id] = e.target.value;
-        setData(newdata)
-        
-    }
+
+
+    // async function submit(e) {
+    //     e.preventDefault();
+    //     // Axios.post(url, data)
+    //     // .then((res)=>{
+    //     //     console.log(res.data)
+    //     // })
+    //     const newPost = {
+    //         title: post.title,
+    //         body: post.body,
+    //         userId: post.userId
+    //     }
+    //     console.log('new post', newPost);
+    //     // const { data } = await GetApi(newPost);
+
+    //     // console.log('post', data)
+    // }
+    // function handle(e) {
+    //     // const newdata = []
+    //     // newdata[e.target.id] = e.target.value;
+    //     setPost({ [e.target.id]: e.target.value })
+    // }
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>Launch demo modal</Button>
+            {/* <Button variant="primary" onClick={handleShow}>Launch demo modal</Button> */}
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Add New</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                <form onSubmit={(e)=>submit(e)} className="inputfrom" action="">
-                    {/* <input onChange={(e)=>handle(e)}  type="text" placeholder="user id" /> */}
-                    <input onChange={(e)=>handle(e)} value={data.title} name="title" type="text" placeholder="Title" />
-                    <input onChange={(e)=>handle(e)} value={data.body} name="body" type="text" placeholder="body" />
-                    <button className="btn btn-primary">Add</button>
-                </form>
+                    <form onSubmit={(e) => submit(e)} className="inputfrom" action="">
+                        {/* <input onChange={(e)=>handle(e)}  type="text" placeholder="user id" /> */}
+                        <input onChange={onChange} name="title" type="text" placeholder="Title" />
+                        <input onChange={onchange} name="body" type="text" placeholder="body" />
+                        <button className="btn btn-primary">Add</button>
+                    </form>
                 </Modal.Body>
             </Modal>
             {/* <form onSubmit={(e)=>submit(e)} className="inputfrom" action="">

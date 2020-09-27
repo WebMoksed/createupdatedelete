@@ -1,8 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import PostApi from '../services/postApi';
 import '../postview/postview.css';
- function Postview(props, handleShow) {
+import { Modal } from 'react-bootstrap';
+import UpdateData from '../update/updatedata';
+import getApi from '../services/getApi';
+import { createPosts, getAllPosts } from '../services/postService'
+
+function Postview(props) {
     const [post, setPost] = useState([]);
+
+    const [value, setValue] = useState({
+        title: "",
+        body: "",
+        userId: ""
+    });
+
+
     useEffect(() => {
         (async function () {
             const { data } = await PostApi.Getallpost();
@@ -34,6 +47,34 @@ import '../postview/postview.css';
         cell3.innerHTML = "";
         cell4.innerHTML = "";
     }
+
+    const [show, setShow] = useState(false);
+
+
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+
+    function onChange(e) {
+        setValue({ [e.target.id]: e.target.value })
+    }
+
+    async function submit(e) {
+        e.preventDefault();
+        // Axios.post(url, data)
+        // .then((res)=>{
+        //     console.log(res.data)
+        // })
+        const newPost = {
+            title: "value.title",
+            body: "value.body",
+            userId: "value.userId"
+        }
+        const { data } = await createPosts(newPost);
+        post.unshift(data)
+    }
+
     return (
         <div className="container">
             <div className="table-wrapper">
@@ -41,7 +82,8 @@ import '../postview/postview.css';
                     <div className="row">
                         <div className="col-sm-8"><h2>Employee <b>Details</b></h2></div>
                         <div className="col-sm-4">
-                            <button type="button" className="btn btn-info add-new" onClick={handleShow}><i className="fa fa-plus"></i> Add New</button>
+                            <button type="button" className="btn btn-info add-new"
+                                onClick={handleShow}><i className="fa fa-plus"></i> Add New</button>
                         </div>
                     </div>
                 </div>
@@ -76,6 +118,8 @@ import '../postview/postview.css';
                     </tbody>
                 </table>
             </div>
+
+            <UpdateData submit={submit} onChange={onChange} handleShow={handleShow} handleClose={handleClose} show={show} ></UpdateData>
         </div>
 
 
