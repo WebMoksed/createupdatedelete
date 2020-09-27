@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import '../update/updatedata.css';
-import Axios from 'axios'
-// import GetApi from '../services/getApi';
+// import Axios from 'axios'
+// import {GetApi} from '../services/getApi'
+import GetApi from '../services/getApi';
 export default function UpdateData() {
     const [insertpost, setInsertpost] = useState([]);
     const [show, setShow] = useState(false);
@@ -21,14 +22,16 @@ export default function UpdateData() {
     //     })()
     // }, [])
 
-const url ="https://jsonplaceholder.typicode.com/posts";
+// const url ="https://jsonplaceholder.typicode.com/posts";
 
-    function submit(e){
+   async function submit(e){
         e.preventDefault();
-        Axios.post(url, data)
-        .then((res)=>{
-            console.log(res.data)
-        })
+        // Axios.post(url, data)
+        // .then((res)=>{
+        //     console.log(res.data)
+        // })
+        // const { data } = await GetApi(data.title, data.body);
+        // console.log(data)
     }
     function handle(e){
         const newdata =[]

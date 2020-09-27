@@ -5,7 +5,7 @@ import UpdateData from './component/update/updatedata'
 function App() {
   return (
     <>
-    {/* <Postview /> */}
+    <Postview />
     <UpdateData />
     </>
 
