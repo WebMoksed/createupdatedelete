@@ -57,22 +57,17 @@ function Postview(props) {
 
 
     function onChange(e) {
-        setValue({ [e.target.id]: e.target.value })
+        const newdata ={...value}
+        newdata[e.target.id] = e.target.value;
+        setValue(newdata)
+        console.log(newdata)
     }
 
     async function submit(e) {
         e.preventDefault();
-        // Axios.post(url, data)
-        // .then((res)=>{
-        //     console.log(res.data)
-        // })
-        const newPost = {
-            title: "value.title",
-            body: "value.body",
-            userId: "value.userId"
-        }
-        const { data } = await createPosts(newPost);
-        post.unshift(data)
+        const { data } = await createPosts(value.userId, value.title, value.body);
+        setValue(data)
+        // console.log(data)
     }
 
     return (

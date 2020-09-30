@@ -1,7 +1,7 @@
 import http from '../services/httpService';
 
-function Getallpost(){
-    return http.get('/posts/');
+function Getallpost(body,title,userId){
+    return http.get('/posts/', {body,title,userId});
 }
 export default { Getallpost };
 
