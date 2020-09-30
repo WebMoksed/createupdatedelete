@@ -5,13 +5,14 @@ import '../update/updatedata.css';
 
 
 export default function UpdateData(props) {
-    const { handleShow, show, handleClose, onChange, submit } = props;
-    const [insertpost, setInsertpost] = useState([]);
-    const [value, setValue] = useState(true,{
-        title: "",
-        body: "",
-        userId: ""
-    });
+    const { show, handleClose, onChange, submit } = props;
+
+    // const [insertpost, setInsertpost] = useState([]);
+    // const [value, setValue] = useState(true, {
+    //     title: "",
+    //     body: "",
+    //     userId: ""
+    // });
 
 
     return (
@@ -23,14 +24,14 @@ export default function UpdateData(props) {
                 </Modal.Header>
                 <Modal.Body>
                     <form onSubmit={(e) => submit(e)} className="inputfrom" action="">
-                        <input onChange={(e)=>onChange(e)} value  ={value.userId} type="text" placeholder="user id" />
-                        <input onChange={(e)=>onChange(e)} value ={value.title} name="title" type="text" placeholder="Title" />
-                        <input onChange={(e)=>onChange(e)} value ={value.body} name="body" type="text" placeholder="body" />
+                        <input onChange={(e) => onChange(e)} name='userId' type="text" placeholder="User ID" />
+                        <input onChange={(e) => onChange(e)} name="title" type="text" placeholder="Title" />
+                        <input onChange={(e) => onChange(e)} name="body" type="text" placeholder="body" />
                         <button className="btn btn-primary">Add</button>
                     </form>
                 </Modal.Body>
             </Modal>
-            
+
         </>
 
 

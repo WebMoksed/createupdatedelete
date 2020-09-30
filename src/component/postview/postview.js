@@ -57,19 +57,19 @@ function Postview(props) {
 
 
     function onChange(e) {
-        const newdata ={...value}
-        newdata[e.target.id] = e.target.value;
+        const newdata = { ...value }
+        newdata[e.target.name] = e.target.value;
         setValue(newdata)
-        console.log(newdata)
     }
 
     async function submit(e) {
         e.preventDefault();
         const { data } = await createPosts(value.userId, value.title, value.body);
-        setValue(data)
-        // console.log(data)
+        setPost([{ id: data.id, title: value.title, body: value.body }, ...post])
+
     }
 
+    console.log('value', value);
     return (
         <div className="container">
             <div className="table-wrapper">
